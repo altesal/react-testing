@@ -6,9 +6,9 @@ export function App() {
     
     return(
        <section className='App'>
-            <TwitterFollowCard  isFollowing={true} userName="calebporzio"  >Miguel Diaz</ TwitterFollowCard>
-            <TwitterFollowCard  isFollowing={true} userName="pheralb" name="Bart" />
-            <TwitterFollowCard  isFollowing={false} userName="midudev" name="Elon" />
+            <TwitterFollowCard  initialIsFollowing={true} userName="calebporzio"  >Miguel Diaz</ TwitterFollowCard>
+            <TwitterFollowCard  initialIsFollowing={true} userName="pheralb" name="Bart" />
+            <TwitterFollowCard  initialIsFollowing={false} userName="midudev" name="Elon" />
         </section>    
     )
 }

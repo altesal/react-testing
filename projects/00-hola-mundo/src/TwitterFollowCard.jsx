@@ -1,5 +1,5 @@
 import {useState} from 'react'
-export function TwitterFollowCard ({children, userName, name}) {
+export function TwitterFollowCard ({children, userName, name, initialIsFollowing}) {
 
 //USando el hook useState
 //const state = useState(false)
@@ -8,7 +8,7 @@ export function TwitterFollowCard ({children, userName, name}) {
 //Desestructurando el array que devuelve useState
 //primera posicion VALOR del estado
 //segunda posicion funcion para actualizar el estado (el interruptor)
-const [isFollowing, setIsFollowing] = useState(false)
+const [isFollowing, setIsFollowing] = useState(initialIsFollowing ?? false)
 
 const  handleClick = () => {
     setIsFollowing(!isFollowing)
