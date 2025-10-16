@@ -63,7 +63,10 @@ const checkWinner = (boardToCheck) => {
    //revisar si hay ganador
     const newWinner = checkWinner(newBoard)
     if(newWinner) {
-      setWinner(newWinner)
+      alert(`El ganador es ${newWinner}`)
+      setWinner(newWinner) //actualiza el estado del ganador y es  ASINCRONO!!!!!
+      //IMPORTAN´TISIMO: LA ACTUALIZACIÓN DEL ESTADO ES ASINCRONA, 
+      //POR LO TANTO NO SE PUEDE USAR EL ESTADO INMEDIATAMENTE DESPUÉS DE ACTUALIZARLO
     } else if(!newBoard.includes(null)) {
       setWinner(false) //empate
     }
