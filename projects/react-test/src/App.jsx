@@ -9,18 +9,26 @@ export function App() {
 const [fact, setFact] = useState('Lorem ipsum cat fact whatever...');
 const [imageUrl, setImageUrl] = useState('');
 
+//Es bueno que un efecto tenga una sola responsabilidad. Recuperar la cita al renderizar la pagina
 useEffect(() => {
     fetch(CAT_ENDPOINT_RANDOM_FACT)
       .then(res => res.json())
       .then(data => {
         const {fact}  = data;
         setFact(fact);   //Minuto 37:44
-        const firstWord = fact.split(' ')[0];
+        }
+      );
+  }, []);
+
+useEffect(() => {
+  if (!fact) return;
+   const firstWord = fact.split(' ')[0];
         const threeword = fact.split(' ').slice(0,3).join(' ');
         //MDN (Mozilla Developer Network) para JavaScript es la plataforma de documentación de referencia gratuita y oficial de Mozilla
         console.log(firstWord);
         console.log(threeword);
-        fetch(CAT_ENDPOINT_IMAGE_URL.replace('${firstWord}', threeword))
+        
+  fetch(CAT_ENDPOINT_IMAGE_URL.replace('${firstWord}', threeword))
           .then(res => res.json())
           .then(response => {
             console.log(response);
@@ -29,10 +37,9 @@ useEffect(() => {
             console.log(url);
             
           });
+}, [fact]);
 
-        }
-      );
-  }, []);
+
 
 return (
     <main  >
