@@ -1,17 +1,13 @@
-# react-testing
+# Proyectos dentro de la carpeta projects
 
-mkdir projects
+## Proyecto desde cero. Punto de entrada y fetch a API
 
-npm init -y
+```    
+react-test
+```
 
-npm create vite@latest
-    Javascript  + SWC (traspiladro como Babel...)
+## Proyecto desde cero. Punto de entrada y fetch a json de stamps
 
-
-cd en el proyecto...
-
-npm install dir
-
-npm run dev
-
-# 01-twitter-follow-card
+```    
+react-stamps
+```
