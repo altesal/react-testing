@@ -1,20 +1,14 @@
 import { useEffect, useState } from "react";
 import './App.css'; 
+import {getRandomFact} from './services/facts'
 
-const CAT_ENDPOINT_RANDOM_FACT = 'https://catfact.ninja/fact';
+
 const CAT_ENDPOINT_IMAGE_URL = 'https://cataas.com/cat/says/${firstWord}?size=50&color=red&json=true';
 
 export function App() {
 const [fact, setFact] = useState();
 const [imageUrl, setImageUrl] = useState('');
-const getRandomFact = () => {
-   fetch(CAT_ENDPOINT_RANDOM_FACT)
-      .then(res => res.json())
-      .then(data => {
-        const {fact}  = data;
-        setFact(fact);   //Minuto 37:44
-        })
-}
+
 
 useEffect(() => {
   if (!fact) return;
@@ -37,10 +31,12 @@ useEffect(() => {
 
 //Es bueno que un efecto tenga una sola responsabilidad. Recuperar la cita al renderizar la pagina
 // Recuperar la cita antes de cargar la página
-  useEffect( getRandomFact, [])
+  useEffect( () => {
+    getRandomFact(setFact)
+  }, [])
 
 const handleClick = () => {
-  getRandomFact()
+  getRandomFact(setFact)
 }
 
 return (
