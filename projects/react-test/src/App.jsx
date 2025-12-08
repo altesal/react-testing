@@ -32,8 +32,8 @@ useEffect(() => {
 //Es bueno que un efecto tenga una sola responsabilidad. Recuperar la cita al renderizar la pagina
 // Recuperar la cita antes de cargar la página
   useEffect( () => {
-    getRandomFact().then(setFact)
-    
+    //getRandomFact().then(setFact)  //Azúcar sintáctico. Es lo mismo que la siguiente línea
+    getRandomFact().then(newFact => setFact(newFact))
   }, [])
 
 const handleClick = async () => {
