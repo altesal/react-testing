@@ -32,11 +32,13 @@ useEffect(() => {
 //Es bueno que un efecto tenga una sola responsabilidad. Recuperar la cita al renderizar la pagina
 // Recuperar la cita antes de cargar la página
   useEffect( () => {
-    getRandomFact(setFact)
+    getRandomFact().then(setFact)
+    
   }, [])
 
-const handleClick = () => {
-  getRandomFact(setFact)
+const handleClick = async () => {
+  const newFact = await getRandomFact()
+  setFact(newFact)
 }
 
 return (
