@@ -1,32 +1,12 @@
-import { useEffect, useState } from "react";
 import './App.css'; 
-import {getRandomFact} from './services/facts'
 import { useCatImage } from "./hooks/useCatImage";
-
-
-//Nuevo customHook: nos traemos el estado y su efecto
-const useCatFact = () => {
-  const [fact, setFact] = useState();
-  
-  //Dentro del customHook sí que podría tener sentido explicar la implementación (nombres...)
-  const refreshRandomFact = () => {
-    getRandomFact().then(newFact => setFact(newFact))
-  }
-  //Lo anterior es justo lo que queríamos que hiciera el sig. efecto, pero también el botón!
-  // recuperar la cita al cargar la página
-   useEffect( () => {
-    refreshRandomFact()
-   }, [])
-  
-   return { fact, refreshRandomFact }
-}
+import { useCatFact } from "./hooks/useCatFact";
 
 export function App() {
   const { fact, refreshRandomFact } = useCatFact()
   const { imageUrl } = useCatImage({fact})
 
 const handleClick = async () => {
-  //const newFact = await getRandomFact()
   refreshRandomFact()
 }
 
