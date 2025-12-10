@@ -11,6 +11,7 @@ const handleSubmit = (event) => {
   console.log(fields_all)
   const fields = new window.FormData(event.target)
   const query = fields.get('query')
+  //Lugar ideal para validaciones...
   console.log(query)
 }
 
