@@ -8,11 +8,13 @@ function App() {
   const { movies } = useMovies()
   const inputRef = useRef() //Valor inicial dentro del useRef, en este caso vacío
 
-const handleSubmit = () => {
+const handleSubmit = (event) => {
+  event.preventDefault()
   //cada vez que haya un clic, sacamos el valor de la referencia
   //al acceder a una referencia, hacerlo desde la propiedad (nativa) current
   const inputElement = inputRef.current.value
-  alert(inputElement)
+  //alert(inputElement)
+  console.log(inputElement)
 }
 
   return (
