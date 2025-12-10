@@ -7,6 +7,8 @@ function App() {
   const { movies } = useMovies()
   const [query, setQuery] = useState('')
   
+  console.log("Uso de estado es más lento. RENDER cada vez que cambia un texto...")
+
   const handleSubmit = (event) => {
     event.preventDefault()
     console.log(query)
