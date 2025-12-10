@@ -7,11 +7,10 @@ function App() {
   
 const handleSubmit = (event) => {
   event.preventDefault()
-  const fields_all = Object.fromEntries(new window.FormData(event.target))
-  console.log(fields_all)
-  const fields = new window.FormData(event.target)
-  const query = fields.get('query')
-  //Lugar ideal para validaciones...
+  const {query} = Object.fromEntries(
+    new window.FormData(event.target)
+    
+  )
   console.log(query)
 }
 
@@ -20,7 +19,6 @@ const handleSubmit = (event) => {
       <header>
       <form className='form' onSubmit={handleSubmit}>
         <input name='query' placeholder='Avengers, Star Warss, The Matrix...'></input>
-        <input name='otracosa' placeholder='Avengers, Star Warss, The Matrix...'></input>
         <button type='submit'>Buscar</button>
       </form>
       </header>
