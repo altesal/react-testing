@@ -1,6 +1,6 @@
 export function ListOfMovies ({movies}) {
     return (
-        <ul>
+        <ul className='movies'>
             {
               movies.map( movie => (
                 <li key={movie.id}>

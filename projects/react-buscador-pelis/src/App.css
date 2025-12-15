@@ -3,15 +3,26 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 100%;
+  max-width: 800px;
 }
 
 main {
   display: flex;
   justify-content: center;
+  width: 100%;
 }
 
 form {
   align-items: center;
   display:  flex;
   justify-content: center;
+}
+
+.movies {
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  /* gap:  separacion entre elementos */
+ gap:32px;
 }
