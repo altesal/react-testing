@@ -1,13 +1,20 @@
+// https://cursoreact.dev/05-use-callback-use-memo-use-ref
+// 56:40
 import './App.css'
-import { useState, useEffect } from 'react'
+import { useState, useEffect , useRef} from 'react'
 import { Movies } from './components/Movies'
 import { useMovies } from './hooks/useMovies'
 
 export function useSearch () {
   const [search, updateSearch] = useState('')
   const [error, setError] = useState(null)
+  const isFirstInput = useRef(true)
  
   useEffect( () => {
+    if(isFirstInput.current){
+      isFirstInput.current = search === ''
+      return
+    }
     if (search === ''){
       setError('No se pueden buscar pelíoculas vacías')
       return
@@ -32,7 +39,6 @@ export function useSearch () {
 function App() {
   const { movies } = useMovies()
   const {search, updateSearch, error } = useSearch()
-  
   
   const handleSubmit = (event) => {
     event.preventDefault()
