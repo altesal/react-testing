@@ -1,7 +1,7 @@
 // https://cursoreact.dev/05-use-callback-use-memo-use-ref
 // 56:40
 import './App.css'
-import { useState, useEffect , useRef} from 'react'
+import { useState, useEffect , useRef, useCallback} from 'react'
 import { Movies } from './components/Movies'
 import { useMovies } from './hooks/useMovies'
 import  debounce  from 'just-debounce-it'
@@ -42,10 +42,11 @@ function App() {
   const {search, updateSearch, error } = useSearch()
   const { movies, loading, getMovies } = useMovies({search, sort})
 
-const debouncedGetMovies = debounce( (search) => {
+const debouncedGetMovies = useCallback(debounce( (search) => {
     console.log('Debounced search', search)
     getMovies({search})
-  }, 500)
+  }, 2000)
+  , [])  //podriamos poner [getMovies] pero como no cambia nunca, da igual...
 
   const handleSubmit = (event) => {
     event.preventDefault()
