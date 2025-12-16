@@ -1,4 +1,4 @@
-import { useRef,  useState } from 'react'
+import { useRef,  useState, useMemo } from 'react'
 import { searchMovies } from '../services/movies'
 
 export function useMovies ({search, sort}) {
@@ -25,16 +25,23 @@ export function useMovies ({search, sort}) {
     }
   }
 
-  const getSortedMovies = () => {
+  // const getSortedMovies = () => {  
+  //   const sortedMovies = sort
+  //     ? [...movies].sort((a, b) => a.title.localeCompare(b.title))
+  //     : movies
     
-    const sortedMovies = sort
-      ? [...movies].sort((a, b) => a.title.localeCompare(b.title))
-      : movies
+  //   console.log(`getSortedMovies ${sortedMovies}`)
     
-    console.log(`getSortedMovies ${sortedMovies}`)
-    
-    return sortedMovies
-  }
+  //   return sortedMovies
+  // }
 
-  return {movies:getSortedMovies(), loading, getMovies}
+  //Cálculo que queremos memorizar. Hazla solo cuando cambie cierta info. 
+  const sortedMovies = useMemo(()=> {
+    console.log('MemoSortedMovies')
+    return  sort
+       ? [...movies].sort((a, b) => a.title.localeCompare(b.title))
+       : movies
+  },[sort, movies])  
+
+  return {movies:sortedMovies, loading, getMovies}
 }
