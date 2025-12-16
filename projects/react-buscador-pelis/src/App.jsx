@@ -37,9 +37,9 @@ export function useSearch () {
 }
 
 function App() {
-  
+  const [sort, setSort] = useState(false)
   const {search, updateSearch, error } = useSearch()
-  const { movies, loading, getMovies } = useMovies({search})
+  const { movies, loading, getMovies } = useMovies({search, sort})
 
   useEffect( () => {
     getMovies()
@@ -50,6 +50,9 @@ function App() {
     getMovies()
   }
 
+  const handleSort = () => {
+    setSort(!sort)
+  }
   const handleChange = (event) => {
     updateSearch(event.target.value)
   }
@@ -59,6 +62,7 @@ function App() {
       <header>
       <form className='form' onSubmit={handleSubmit}>
         <input onChange={handleChange} value={search} name='query' placeholder='Avengers, Star Warss, The Matrix...'></input>
+        <input type='checkBox' onChange={handleSort} checked={sort} />
         <button type='submit'>Buscar</button>
       </form>
       {error && <p style={{color:'red'}}>{error}</p>}
