@@ -39,7 +39,7 @@ export function useSearch () {
 function App() {
   
   const {search, updateSearch, error } = useSearch()
-  const { movies, getMovies } = useMovies({search})
+  const { movies, loading, getMovies } = useMovies({search})
 
   useEffect( () => {
     getMovies()
@@ -65,7 +65,7 @@ function App() {
       </header>
 
       <main>
-        <Movies movies={movies} />
+        { loading ? <p>Loading...</p> : <Movies movies={movies} /> }
       </main>
     </div>
   )

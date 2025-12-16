@@ -12,6 +12,7 @@ export function useMovies ({search}) {
 
   try {
       setLoading(true)
+      console.log('Loaging...test cargando')
       setError(null)
       previousSearch.current = search
       const newMovies = await searchMovies({search})
@@ -20,8 +21,9 @@ export function useMovies ({search}) {
       setError(e.message)
     } finally {
       setLoading(false)
+      console.log('Loading finished')
     }
   }
 
-  return {movies, getMovies}
+  return {movies, loading, getMovies}
 }
