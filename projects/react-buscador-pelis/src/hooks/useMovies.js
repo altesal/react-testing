@@ -8,11 +8,13 @@ export function useMovies ({search, sort}) {
   const previousSearch = useRef(search) //UseRef para guardar la búsqueda anterior y evitar llamadas innecesarias
  
  const getMovies = async () => {
+  
   if (search === previousSearch.current) return //Si la búsqueda es igual a la anterior, no hacer nada
-
+  console.log('Clic en buscar...')
+  
   try {
       setLoading(true)
-      console.log('Loaging...test cargando')
+      console.log('Loading...test cargando')
       setError(null)
       previousSearch.current = search
       const newMovies = await searchMovies({search})

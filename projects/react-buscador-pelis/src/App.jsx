@@ -44,6 +44,10 @@ function App() {
   useEffect( () => {
     getMovies()
   } , [])
+
+  useEffect( ()=> {
+    console.log('Llamada a  getMovies - Cambio Search/Cambio orden')
+  }, [getMovies])
   
   const handleSubmit = (event) => {
     event.preventDefault()
