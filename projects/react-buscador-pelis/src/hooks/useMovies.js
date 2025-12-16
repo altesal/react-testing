@@ -7,25 +7,29 @@ export function useMovies ({search, sort}) {
   const [error, setError] = useState(null)
   const previousSearch = useRef(search) //UseRef para guardar la búsqueda anterior y evitar llamadas innecesarias
  
- const getMovies = async () => {
-  
-  if (search === previousSearch.current) return //Si la búsqueda es igual a la anterior, no hacer nada
-  console.log('Clic en buscar...')
-  
-  try {
-      setLoading(true)
-      console.log('Loading...test cargando')
-      setError(null)
-      previousSearch.current = search
-      const newMovies = await searchMovies({search})
-      setMovies(newMovies)
-    }catch (e) {
-      setError(e.message)
-    } finally {
-      setLoading(false)
-      console.log('Loading finished')
+ const getMovies = useMemo(()=> {
+    return  async () => {
+      
+      if (search === previousSearch.current) return //Si la búsqueda es igual a la anterior, no hacer nada
+      console.log('Clic en buscar...')
+      
+      try {
+          setLoading(true)
+          console.log('Loading...test cargando')
+          setError(null)
+          previousSearch.current = search
+          const newMovies = await searchMovies({search})
+          setMovies(newMovies)
+        }catch (e) {
+          setError(e.message)
+        } finally {
+          setLoading(false)
+          console.log('Loading finished')
+        }
     }
-  }
+ }, [search])
+ 
+ 
 
   // const getSortedMovies = () => {  
   //   const sortedMovies = sort

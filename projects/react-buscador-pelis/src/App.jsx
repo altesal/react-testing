@@ -46,7 +46,7 @@ function App() {
   } , [])
 
   useEffect( ()=> {
-    console.log('Llamada a  getMovies - Cambio Search/Cambio orden')
+    console.log('Llamada a  getMovies - Cambio únicamente en la Search (pero no en el sort!!)')
   }, [getMovies])
   
   const handleSubmit = (event) => {
