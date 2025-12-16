@@ -41,17 +41,9 @@ function App() {
   const {search, updateSearch, error } = useSearch()
   const { movies, loading, getMovies } = useMovies({search, sort})
 
-  useEffect( () => {
-    getMovies()
-  } , [])
-
-  useEffect( ()=> {
-    console.log('Llamada a  getMovies - Cambio únicamente en la Search (pero no en el sort!!)')
-  }, [getMovies])
-  
   const handleSubmit = (event) => {
     event.preventDefault()
-    getMovies()
+    getMovies({search})
   }
 
   const handleSort = () => {
@@ -60,6 +52,10 @@ function App() {
   const handleChange = (event) => {
     updateSearch(event.target.value)
   }
+  
+  useEffect( ()=> {
+    console.log('Llamada a  getMovies - Cambio únicamente en la Search (pero no en el sort!!)')
+  }, [getMovies])
 
   return (
     <div className="page"> 

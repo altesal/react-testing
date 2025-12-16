@@ -8,7 +8,8 @@ export function useMovies ({search, sort}) {
   const previousSearch = useRef(search) //UseRef para guardar la búsqueda anterior y evitar llamadas innecesarias
  
  const getMovies = useMemo(()=> {
-    return  async () => {
+  //inyectar por parámetro para generar la función 1 sola vez
+    return  async ({search}) => {
       
       if (search === previousSearch.current) return //Si la búsqueda es igual a la anterior, no hacer nada
       console.log('Clic en buscar...')
@@ -27,20 +28,9 @@ export function useMovies ({search, sort}) {
           console.log('Loading finished')
         }
     }
- }, [search])
+ }, [])
  
  
-
-  // const getSortedMovies = () => {  
-  //   const sortedMovies = sort
-  //     ? [...movies].sort((a, b) => a.title.localeCompare(b.title))
-  //     : movies
-    
-  //   console.log(`getSortedMovies ${sortedMovies}`)
-    
-  //   return sortedMovies
-  // }
-
   //Cálculo que queremos memorizar. Hazla solo cuando cambie cierta info. 
   const sortedMovies = useMemo(()=> {
     console.log('MemoSortedMovies')
